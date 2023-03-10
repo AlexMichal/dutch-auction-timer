@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:innerRadius="0dp"
+    android:shape="ring"
+    android:thicknessRatio="2"
+    android:useLevel="false" >
+
+    <solid
+        android:color="#1D5750"/>
+
+    <size
+        android:width="130dp"
+        android:height="130dp"/>
+
+    <stroke
+        android:width="0dp"
+        android:color="#4D757575"
+        android:dashWidth="@dimen/cardview_compat_inset_shadow"/>
+    <gradient
+        android:type="radial"
+        android:gradientRadius="90%p"
+        android:startColor="#AB3EBFB0"
+        android:endColor="#00115EDE" />
+</shape>
