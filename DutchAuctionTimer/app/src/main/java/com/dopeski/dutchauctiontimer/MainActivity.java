@@ -122,15 +122,16 @@ public class MainActivity extends AppCompatActivity
 
         // Rotation Animation (Doubled)
         DoubledRotateAnimation = CreateRotationAnimation(ClockHand, START_LOCATION, END_AND_FINAL_DOUBLE_LOCATION, DOUBLED_DURATION);
-        DoubledRotateAnimation.addListener(new AnimatorListenerAdapter() {
+        DoubledRotateAnimation.addListener(new AnimatorListenerAdapter()
+        {
             @Override
             public void onAnimationEnd(Animator animation)
             {
                 Out(PAY_PHRASE_BEGIN + 200 + PAY_PHRASE_END);
 
-                DoubledIcon.setVisibility(View.INVISIBLE);
-                ButtonStop.setVisibility(View.INVISIBLE);
-                ButtonStartAndReset.setVisibility(View.VISIBLE);
+                HideDoubledIcon();
+
+                HideStopButtonAndShowStartResetButton();
 
                 ResetAfterDoubled = true;
                 CurrentPosition = END_AND_FINAL_DOUBLE_LOCATION;
@@ -267,8 +268,8 @@ public class MainActivity extends AppCompatActivity
 
         CurrentPosition = (Float) RotateAnimation.getAnimatedValue();
 
-        ButtonStop.setVisibility(View.INVISIBLE);
-        ButtonStartAndReset.setVisibility(View.VISIBLE);
+        HideStopButtonAndShowStartResetButton();
+
         float currentPosition = 0.0f;
 
         if (Doubled)
@@ -311,9 +312,7 @@ public class MainActivity extends AppCompatActivity
             {
                 number = number * 2;
 
-                DoubledIcon.clearAnimation();
-                DoubledIcon.setAnimation(CreateFadeOutAnimation(DoubledIcon));
-                DoubledIcon.setVisibility(View.INVISIBLE);
+                HideDoubledIcon();
 
                 Doubled = false;
                 ResetAfterDoubled = true;
@@ -321,6 +320,19 @@ public class MainActivity extends AppCompatActivity
 
             Out(PAY_PHRASE_BEGIN + number + PAY_PHRASE_END);
         }
+    }
+
+    private void HideStopButtonAndShowStartResetButton()
+    {
+        ButtonStop.setVisibility(View.INVISIBLE);
+        ButtonStartAndReset.setVisibility(View.VISIBLE);
+    }
+
+    private void HideDoubledIcon()
+    {
+        DoubledIcon.clearAnimation();
+        DoubledIcon.setAnimation(CreateFadeOutAnimation(DoubledIcon));
+        DoubledIcon.setVisibility(View.INVISIBLE);
     }
 
     private void ResetClockAnimation()
@@ -418,8 +430,7 @@ public class MainActivity extends AppCompatActivity
         ObjectAnimator finalAnimation = CreateRotationAnimation(ClockHand, currentPosition, endLocation, 100);
         finalAnimation.start();
 
-        ButtonStop.setVisibility(View.INVISIBLE);
-        ButtonStartAndReset.setVisibility(View.VISIBLE);
+        HideStopButtonAndShowStartResetButton();
 
         CurrentPosition = FINAL_LOCATION;
     }
