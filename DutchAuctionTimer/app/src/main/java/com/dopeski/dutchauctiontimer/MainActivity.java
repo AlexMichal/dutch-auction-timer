@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -25,15 +24,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.dopeski.dutchauctiontimer.databinding.ActivityMainBinding;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.collect.Range;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.collect.RangeMap;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.collect.TreeRangeMap;
-
 
 public class MainActivity extends AppCompatActivity
 {
@@ -119,6 +114,7 @@ public class MainActivity extends AppCompatActivity
 
         // Rotate Animation
         RotateAnimation = CreateRotationAnimation(ClockHand, START_LOCATION, END_LOCATION, DURATION);
+
         RotateAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation)
@@ -451,6 +447,8 @@ public class MainActivity extends AppCompatActivity
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         View decorView = window.getDecorView();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -465,12 +463,6 @@ public class MainActivity extends AppCompatActivity
         else
         {
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-        {
-            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
     }
 

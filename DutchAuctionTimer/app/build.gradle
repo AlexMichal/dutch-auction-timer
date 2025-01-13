@@ -3,6 +3,11 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\dev\\keystore\\keyfordutchauctiontimer.jks')
+        }
+    }
     namespace 'com.dopeski.dutchauctiontimer'
     compileSdk 33
 
@@ -10,8 +15,8 @@ android {
         applicationId 'com.dopeski.dutchauctiontimer'
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 101
+        versionName "1.01"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
