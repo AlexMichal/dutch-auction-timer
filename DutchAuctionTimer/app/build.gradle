@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'com.dopeski.dutchauctiontimer'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId 'com.dopeski.dutchauctiontimer'
         minSdk 24
-        targetSdk 34
-        versionCode 102
-        versionName "1.02"
+        targetSdk 35
+        versionCode 103
+        versionName "1.03"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
